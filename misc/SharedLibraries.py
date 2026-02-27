@@ -99,9 +99,12 @@ def saveDeltaTableToCatalog(df,schema,tableName):
     schema = schema.lower()
     tableName = tableName.lower()
     spark.sql(f"CREATE SCHEMA IF NOT EXISTS {schema}")
-    df.write.format("delta").mode("overwrite").saveAsTable(f"{schema}.{tableName}")
+    df.write.format("delta").mode("overwrite").option("mergeSchema","True").saveAsTable(f"{schema}.{tableName}")
 
 
 # COMMAND ----------
 
-
+def appendToDeltaTable(df,schema,tableName):
+    schema = schema.lower()
+    tableName = tableName.lower()
+    df.write.format("delta").mode("append").option("mergeSchema","True").saveAsTable(f"{schema}.{tableName}")
