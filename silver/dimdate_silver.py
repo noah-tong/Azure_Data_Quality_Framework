@@ -110,4 +110,8 @@ saveDeltaTableToCatalog(df_final,"silver",Entity)
 
 # COMMAND ----------
 
-
+# %sql
+# select DateId, count(1) as totalcount
+# from silver.dimdate
+# group by DateId
+# order by totalcount desc
