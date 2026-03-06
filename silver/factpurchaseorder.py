@@ -39,7 +39,7 @@ factpurchaseorderDf = purchaseorderDf.filter(purchaseorderDf.RecordId.isNotNull(
         F.from_utc_timestamp(purchaseorderDf.DataLakeModified_DateTime,'CST').alias("DataLakeModified_DateTime"),
         purchaseorderDf.Qty,
         purchaseorderDf.PurchasePrice,
-        purchaseorderDf.TotalOrder,
+        purchaseorderDf.TotalOrder.cast("double").alias("TotalOrder"),
         purchaseorderDf.CostCenter.alias("CostCenterKey"),
         dimcostcenterDf.Vat.alias("VatAmount"),
         F.round((purchaseorderDf.TotalOrder + (purchaseorderDf.TotalOrder * dimcostcenterDf.Vat)),4).alias("TotalAmount"),
