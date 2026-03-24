@@ -1,20 +1,24 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Data Quality Automation Framework
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+A metadata-driven framework to automate data validation within a **Medallion Architecture** using **Azure Databricks**, **PySpark**, and **ADF**.
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+##  Project Overview
+* **Objective**: Decouple validation rules from execution code to enable scalable, self-service data governance.
+* **Core Logic**: Uses **SQL-based metadata** to drive **PySpark** validation engines.
+* **Key Feature**: **Watermark-based incremental auditing** to reduce compute costs and avoid redundant checks.
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+##  Tech Stack
+* **Compute**: Azure Databricks (PySpark)
+* **Orchestration**: Azure Data Factory (ADF)
+* **Metadata Store**: Azure SQL Database
+* **Governance**: Unity Catalog & Delta Lake
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+##  Project Structure
+<img width="1200" height="896" alt="image" src="https://github.com/user-attachments/assets/8c0866d0-2250-4624-a1d3-75757d082baa" />
+
+
+##  How It Works
+1.  **ADF** triggers the workflow and manages the **Watermark**.
+2.  **Databricks** fetches active rules from SQL Metadata.
+3.  **Spark** executes SQL queries dynamically and isolates **Bad Records**.
+4.  **Logic Apps** monitor results to trigger **Azure DevOps** tickets for failed checks.
