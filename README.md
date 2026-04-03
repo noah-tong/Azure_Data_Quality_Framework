@@ -1,6 +1,6 @@
 # Data Quality Automation Framework
 
-A metadata-driven framework to automate data validation within a **Medallion Architecture** using **Azure Databricks**, **PySpark**, and **ADF**.
+A metadata-driven framework to automate data validation within a **Medallion Architecture** using **Azure Databricks**, **PySpark**, **ADF** and **Azure DevOps"
 
 ##  Project Overview
 * **Objective**: Decouple validation rules from execution code to enable scalable, self-service data governance.
